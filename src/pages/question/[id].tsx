@@ -1,10 +1,17 @@
-import QuestionCard from "@/components/ui/question-card/question-card";
-import { IQuestion, IQuestionData } from "@/interfaces/question.interface";
-import { QuestionService } from "@/services/question.service";
+import QuestionCard from "@/components/ui/question-card/QuestionCard";
+import { IAnswer } from "@/interfaces/Answer.interface";
+import { IQuestion, IQuestionData } from "@/interfaces/Question.interface";
+import { QuestionService } from "@/services/Question.service";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 
-const QuestionPage: NextPage<IQuestionData> = ({ question, answers }) => {
+const QuestionPage: NextPage<IQuestionData> = ({
+  question,
+  answers,
+}: {
+  question: IQuestion;
+  answers: IAnswer[];
+}) => {
   return <QuestionCard question={question} answers={answers} />;
 };
 
@@ -25,11 +32,15 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<IQuestionData> = async ({
-  params,
-}) => {
-  const question = await QuestionService.getQuestionById(String(params?.id));
-  const answers = await QuestionService.getQuestionAnswers(String(params?.id));
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const questionData = await Promise.allSettled([
+    QuestionService.getQuestionById(String(params?.id)),
+    QuestionService.getQuestionAnswers(String(params?.id)),
+  ]);
+
+  const [question, answers] = questionData.map((res) => {
+    if (res.status === "fulfilled") return res.value;
+  });
 
   return {
     props: { question, answers },

@@ -19,7 +19,7 @@
     transition: all 200ms ease-out;
   }
 
-  &-current {
+  &__current {
     background-color: var(--orange);
     color: var(--white);
     border: 1px solid transparent;

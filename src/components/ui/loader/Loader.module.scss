@@ -1,0 +1,39 @@
+.wrapper {
+  width: 500px;
+  min-width: 24px;
+  color: var(--orange);
+}
+
+.wrapper div {
+  margin: 3px auto;
+  height: 0.33em;
+  background-color: var(--orange);
+}
+
+.item1 {
+  animation: pulse 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  margin-bottom: 2px;
+}
+
+.item2 {
+  animation: pulse 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  animation-delay: -0.2s;
+  margin-bottom: 2px;
+}
+
+.item3 {
+  animation: pulse 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  animation-delay: -0.4s;
+}
+
+@keyframes pulse {
+  0% {
+    width: 0.4em;
+  }
+  50% {
+    width: 1.4em;
+  }
+  100% {
+    width: 0.4em;
+  }
+}

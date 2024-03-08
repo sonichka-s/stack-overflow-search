@@ -1,8 +1,7 @@
-import { IAnswerData } from "@/interfaces/answer.interface";
+import { IAnswerData } from "@/interfaces/Answer.interface";
 import { FC } from "react";
-import styles from "./answer-card.module.scss";
+import styles from "./AnswerCard.module.scss"
 import Image from "next/image";
-import { getTextContentOnly } from "../utils/HtmlParser";
 
 const AnswerCard: FC<IAnswerData> = ({ answer }) => {
   return (
@@ -14,7 +13,10 @@ const AnswerCard: FC<IAnswerData> = ({ answer }) => {
         width={50}
         height={50}
       />
-      <div className={styles["answer-body"]}>{getTextContentOnly(answer.body)}</div>
+      <div
+        className={styles.answerBody}
+        dangerouslySetInnerHTML={{ __html: answer.body }}
+      />
     </div>
   );
 };

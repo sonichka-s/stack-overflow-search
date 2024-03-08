@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllQuestions, getSearchedQuestions } from "./questions.actions";
-import { IQuestion } from "@/interfaces/question.interface";
+import { getAllQuestions, getSearchedQuestions } from "./Questions.actions";
+import { IQuestion } from "@/interfaces/Question.interface";
 
 export const questionsSlice = createSlice({
   name: "questions",
@@ -10,7 +10,7 @@ export const questionsSlice = createSlice({
     questions: [] as IQuestion[],
     currentPage: 1,
     searchValue: "",
-    sort: "hot",
+    sort: "activity",
   },
   reducers: {
     setCurrentPage(state, action) {

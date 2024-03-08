@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./pagination.module.scss";
+import styles from "./Pagination.module.scss";
 import { useDispatchedActions } from "@/hooks/useDispatchedActions";
 
 const Pagination: FC<{ currentPage: number }> = ({ currentPage }) => {
@@ -7,8 +7,10 @@ const Pagination: FC<{ currentPage: number }> = ({ currentPage }) => {
 
   const { setCurrentPage } = useDispatchedActions();
 
-  const onPageChange = (e: React.MouseEvent<HTMLElement>) =>
-    setCurrentPage(parseInt(e.target?.innerHTML));
+  const onPageChange = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as Element;
+    setCurrentPage(parseInt(target.innerHTML));
+  };
 
   return (
     <div className={styles.row}>

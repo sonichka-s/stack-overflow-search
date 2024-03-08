@@ -1,14 +1,8 @@
-import { Inter } from "next/font/google";
-import QuestionList from "@/components/questions-list/questions-list";
-import { Provider } from "react-redux";
-import { store } from "@/store/store";
+import type { NextPage } from "next";
+import QuestionList from "@/components/questions-list/QuestionsList";
 
-const inter = Inter({ subsets: ["latin"] });
+const HomePage: NextPage = () => {
+  return <QuestionList />;
+};
 
-export default function HomePage() {
-  return (
-    <Provider store={store}>
-      <QuestionList />
-    </Provider>
-  );
-}
+export default HomePage;

@@ -1,10 +1,9 @@
 import { FC } from "react";
-import styles from "./question-preview.module.scss";
-import { IQuestionData } from "@/interfaces/question.interface";
+import styles from "./QuestionPreview.module.scss";
+import { IQuestionData } from "@/interfaces/Question.interface";
 import Image from "next/image";
-import Tag from "../tag/tag";
+import Tag from "../tag/Tag";
 import Link from "next/link";
-import { getTextContentOnly } from "../utils/HtmlParser";
 
 const QuestionPreview: FC<IQuestionData> = ({ question }) => {
   return (
@@ -17,14 +16,14 @@ const QuestionPreview: FC<IQuestionData> = ({ question }) => {
         height={50}
       />
       <div className={styles.info}>
-        <Link className={styles["info__title"]} href={`question/${question.question_id}`}>{getTextContentOnly(question.title)}</Link>
-        <div className={styles["info__text"]}>{getTextContentOnly(question.body)}</div>
+        <Link className={styles.info__title} href={`question/${question.question_id}`} dangerouslySetInnerHTML={{ __html: question.title }} />
+        <div className={styles.info__text}dangerouslySetInnerHTML={{ __html: question.body }} />
       </div>
       <div className={styles.count}>{question.answer_count}</div>
       <div className={styles.tags}>
         {question.tags.map((tag, index) => {
           if (index < 3) {
-            return <Tag>{tag}</Tag>;
+            return <Tag key={index}>{tag}</Tag>;
           }
         })}
         {question.tags.length > 3 ? (

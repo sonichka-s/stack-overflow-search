@@ -1,14 +1,15 @@
 import { FC, useEffect } from "react";
-import Layout from "../layout/layout";
-import QuestionPreview from "../ui/question-preview/question-preview";
-import styles from "./question-list.module.scss";
+import Layout from "../layout/Layout";
+import QuestionPreview from "../ui/question-preview/QuestionPreview";
+import styles from "./QuestionsList.module.scss";
 import { useSelector } from "react-redux";
 import { useDispatchedActions } from "@/hooks/useDispatchedActions";
-import { IQuestion } from "@/interfaces/question.interface";
-import Pagination from "../pagination/pagination";
+import { IQuestion } from "@/interfaces/Question.interface";
+import Pagination from "../pagination/Pagination";
 import { debounce } from "lodash";
-import Tag from "../ui/tag/tag";
-import { RootState } from "@/types/state";
+import Tag from "../ui/tag/Tag";
+import Loader from "../ui/loader/Loader";
+import { RootState } from "@/types/Redux.type";
 
 const QuestionList: FC = () => {
   const actions = useDispatchedActions();
@@ -42,29 +43,29 @@ const QuestionList: FC = () => {
           placeholder={"Найти..."}
           onChange={(e) => onSearchValue(e.target.value)}
         />
-        <div className={styles["sort-tags"]}>
+        <div className={styles.sortTags}>
           Сортировать по:
-          <Tag type="sort" value="hot">
-            Популярности
-          </Tag>
           <Tag type="sort" value="activity">
-            Последней активности
+            последней активности
           </Tag>
           <Tag type="sort" value="votes">
-            Голосам
+            голосам
           </Tag>
           <Tag type="sort" value="creation">
-            Дате создания
+            дате создания
           </Tag>
         </div>
         {loading ? (
-          <div>Загрузка...</div>
+          <Loader isLoading={loading} />
         ) : (
           <>
             {questions?.length ? (
               <>
                 {questions.map((question: IQuestion) => (
-                  <QuestionPreview question={question} />
+                  <QuestionPreview
+                    question={question}
+                    key={question.question_id}
+                  />
                 ))}
                 <Pagination currentPage={currentPage} />
               </>

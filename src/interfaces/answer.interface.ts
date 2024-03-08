@@ -1,4 +1,4 @@
-import { IUser } from "./user.interface";
+import { IUser } from "./User.interface";
 
 export interface IAnswer {
   answer_id: string;

@@ -1,8 +1,9 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
-import * as questionsActions from "@/store/questions/questions.actions";
-import { questionsSlice } from "@/store/questions/questions.slice";
+import * as questionsActions from "@/store/questions/Questions.actions";
+import { questionsSlice } from "@/store/questions/Questions.slice";
+import { AppDispatch } from "@/types/Redux.type";
 
 const actionCreators = {
   ...questionsActions,
@@ -10,7 +11,7 @@ const actionCreators = {
 };
 
 export const useDispatchedActions = () => {
-  const dispatch = useDispatch();   
+  const dispatch = useDispatch<AppDispatch>();   
 
   return useMemo(
     () => bindActionCreators(actionCreators, dispatch),

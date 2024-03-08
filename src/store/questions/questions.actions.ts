@@ -1,5 +1,5 @@
-import { QuestionService } from "@/services/question.service";
-import { RootState } from "@/types/state";
+import { QuestionService } from "@/services/Question.service";
+import { RootState } from "@/types/Redux.type";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getAllQuestions = createAsyncThunk(
@@ -24,8 +24,8 @@ export const getSearchedQuestions = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const response = await QuestionService.getSearchedQuestions(
-        state.questions.sort,
         state.questions.searchValue,
+        state.questions.sort,
         state.questions.currentPage
       );
       return response;

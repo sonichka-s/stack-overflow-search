@@ -1,5 +1,5 @@
-import { IAnswer } from "./answer.interface";
-import { IUser } from "./user.interface";
+import { IUser } from "./User.interface";
+import { IAnswer } from "./Answer.interface";
 
 export interface IQuestion {
   question_id: string;

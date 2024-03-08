@@ -1,0 +1,40 @@
+.body {
+  grid-column: span 2;
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  padding-right: 48px;
+  background-color: var(--white);
+  border-radius: 12px;
+}
+
+.avatar {
+  border-radius: 50%;
+  grid-row: span 1;
+}
+
+.answerBody {
+  font-size: 14px;
+  position: relative;
+  grid-column-start: 2;
+  width: auto;
+  min-width: 0;
+
+  & * {
+    &:not(:last-child) {
+      margin-bottom: 1.1em;
+    }
+  }
+
+  & pre {
+    background: var(--code-background);
+    border-radius: 8px;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    overflow: auto;
+    padding: 18px;
+    word-wrap: break-word;
+    line-height: 1.7em;
+  }
+}

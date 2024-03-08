@@ -1,6 +1,10 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, ReactNode } from "react";
 
-const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
+const Layout: FC<PropsWithChildren<unknown>> = ({
+  children,
+}: {
+  children?: ReactNode;
+}) => {
   return <div id={"layout"}>{children}</div>;
 };
 
